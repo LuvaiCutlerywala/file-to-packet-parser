@@ -24,3 +24,4 @@ from the origin file and directly written to the target files. There is no proce
 
 ## Future plans ##
 - [ ] To include some way of checking if the data is corrupted.
+- [ ] To include charset encoding information for the validation data.

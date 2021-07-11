@@ -9,14 +9,13 @@ public class FileParser {
 
     private int payloadSize;
     private File file;
-    private FileInputStream inpStream;
 
     public FileParser(Path path, int payloadSize) throws IllegalArgumentException{
         loadFile(path.toFile());
         this.payloadSize = payloadSize;
     }
 
-    public FileParser(File file, int payload) throws IllegalArgumentException{
+    public FileParser(File file, int payloadSize) throws IllegalArgumentException{
         loadFile(file);
         this.payloadSize = payloadSize;
     }
@@ -28,20 +27,18 @@ public class FileParser {
 
     public FileParser(){}
 
-    public int getpayloadSize(){
+    public int getPayloadSize(){
         return this.payloadSize;
     }
 
-    public void setpayloadSize(int payloadSize){
+    public void setPayloadSize(int payloadSize){
         this.payloadSize = payloadSize;
     }
-
-    //TODO: Test the file parsing algorithm.
 
     public void parseFile(){
         byte[] buffer = new byte[this.payloadSize];
        try{
-           inpStream = new FileInputStream(file.toString());
+           FileInputStream inpStream = new FileInputStream(file.toString());
            int dataRead = 0;
            int sequenceNumber = 0;
            do{

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Serializer {
 
@@ -22,8 +21,6 @@ public class Serializer {
             System.out.println("Payload: " + packet.getPayload());
         }
     }
-
-    //TODO: Write a serialization algorithm for the packets with .packet file
 
     protected static void serializePackets() throws IllegalPropertyException{
         try {
@@ -51,7 +48,5 @@ public class Serializer {
         }
         return byteArr;
     }
-
-    //TODO: Write a .packet file format spec sheet for personal use. Also include in git repo.
 
 }

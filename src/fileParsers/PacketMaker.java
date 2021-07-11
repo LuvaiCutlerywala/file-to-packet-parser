@@ -6,8 +6,7 @@ public class PacketMaker {
 
     public static void main(String[] args){
         setupSystemProperties();
-        //TODO: Finish the core packet parsing and serialization algorithm.
-        FileParser parser = new FileParser("c:\\Users\\luvai_kcrxbon\\Pictures\\Memes\\R.I.P Spongebob.jpg", 512);
+        FileParser parser = new FileParser(args[0], Integer.parseInt(args[1]));
         parser.parseFile();
         Serializer.printPackets();
         try{
