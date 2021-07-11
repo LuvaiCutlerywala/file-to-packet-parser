@@ -1,4 +1,4 @@
-package fileParsers;
+package fileParser;
 
 import java.io.IOException;
 

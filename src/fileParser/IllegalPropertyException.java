@@ -1,4 +1,4 @@
-package fileParsers;
+package fileParser;
 
 /*
 * This class is built specially for the properties of a packet being missing. The implementation of IllegalArgumentException
