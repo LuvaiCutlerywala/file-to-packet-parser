@@ -1,5 +1,7 @@
 package fileParsers;
 
+import entities.Packet;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

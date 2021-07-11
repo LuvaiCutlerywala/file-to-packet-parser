@@ -1,9 +1,13 @@
-package fileParsers;
+package entities;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/*
+* Packet POJO entity. Makes the process of dealing with packets easier, as attributes such as the checksum and timestamp can
+* be generated and managed without requiring other classes to provide for the packets.
+* */
 public class Packet {
 
     private long sequenceNumber;
@@ -11,37 +15,42 @@ public class Packet {
     private long unixTimeStamp;
     private String checkSum;
 
-    protected Packet(long sequenceNumber, byte[] payload){
+    public Packet(long sequenceNumber, byte[] payload){
         this.sequenceNumber = sequenceNumber;
         this.payload = payload;
         this.unixTimeStamp = System.currentTimeMillis() / 1000L;
         this.checkSum = generateCheckSum();
     }
 
-    protected long getSequenceNumber() {
+    public long getSequenceNumber() {
         return sequenceNumber;
     }
 
-    protected void setSequenceNumber(long sequenceNumber) {
+    public void setSequenceNumber(long sequenceNumber) {
         this.sequenceNumber = sequenceNumber;
     }
 
-    protected byte[] getPayload() {
+    public byte[] getPayload() {
         return payload;
     }
 
-    protected void setPayload(byte[] payload) {
+    public void setPayload(byte[] payload) {
         this.payload = payload;
     }
 
-    protected long getUnixTimeStamp() {
+    public long getUnixTimeStamp() {
         return unixTimeStamp;
     }
 
-    protected String getCheckSum() {
+    public String getCheckSum() {
         return this.checkSum;
     }
 
+    /*
+    * Uses basic checksum generation algorithm based on the SHA256 hashing algorithm. The message for hash is timestamp as
+    * it more convenient to have the same checksum for all packets produced at certain time. The convenience shows in the
+    * validation process.
+    * */
     private String generateCheckSum(){
         try{
             MessageDigest md = MessageDigest.getInstance("SHA256");
