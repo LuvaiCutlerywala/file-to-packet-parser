@@ -23,4 +23,4 @@ with all the original formatting/the original structure, but I don't know for su
 from the origin file and directly written to the target files. There is no processing of the data.
 
 ## Future plans ##
-[ ] To include some way of checking if the data is corrupted.
+- [ ] To include some way of checking if the data is corrupted.
