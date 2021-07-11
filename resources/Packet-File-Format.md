@@ -10,7 +10,7 @@ then the checksum, then the data. Each piece of validation data is added with a 
 sort of like assembly comments. To note, the payload is not delimited by the semicolons.
 
 ### Validation data ###
-To reiterate, each piece of validation data is enclosed by semicolons, in the form ;<data>;
+To reiterate, each piece of validation data is enclosed by semicolons, in the form ;data_here;
 - __Sequence Number__ : As the sequence number is vital to recreating the file, it is the first item.
 - __Timestamp__ : The timestamp is a UNIX timestamp, which is the number of seconds elapsed from 1 January 1970,
                   midnight.
