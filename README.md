@@ -23,4 +23,4 @@ transmission.
                                       be a separate project.
 
 ### Reading topics ###
-Network packets: [Named Link]https://en.wikipedia.org/wiki/Network_packet
+ - __Network packets__: https://en.wikipedia.org/wiki/Network_packet
