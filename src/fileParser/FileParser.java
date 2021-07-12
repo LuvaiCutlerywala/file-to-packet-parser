@@ -57,7 +57,7 @@ public class FileParser {
         byte[] buffer = new byte[this.payloadSize];
        try{
            FileInputStream inpStream = new FileInputStream(file.toString());
-           int dataRead = 0;
+           int dataRead;
            int sequenceNumber = 0;
            do{
                dataRead = inpStream.read(buffer);

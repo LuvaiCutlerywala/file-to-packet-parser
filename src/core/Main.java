@@ -1,4 +1,8 @@
-package fileParser;
+package core;
+
+import fileParser.FileParser;
+import fileParser.IllegalPropertyException;
+import fileParser.Serializer;
 
 import java.io.IOException;
 
@@ -7,7 +11,7 @@ import java.io.IOException;
 * for setup and shutdown of the process, and of course the main conversion pipeline. Nothing more should be added to this
 * class for code splitting's sake.
 * */
-public class PacketMaker {
+public class Main {
 
     /*
     * This is the base algorithm, and to note this is the conversion pipeline. So, if you do have anything to improve,

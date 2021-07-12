@@ -24,7 +24,7 @@ public class Serializer {
     private static final ArrayList<Packet> packetList = new ArrayList<>();
 
     //Creates a packet with the given attributes and adds it to the collection.
-    protected static void createPacket(int sequenceNumber, byte[] buffer){
+    public static void createPacket(int sequenceNumber, byte[] buffer){
         Packet packet = new Packet(sequenceNumber, buffer);
         packetList.add(packet);
     }
@@ -37,7 +37,7 @@ public class Serializer {
     * supposed to be the reason why it outputs the bytes as raw, or else the express Arrays.toString() call leaves the
     * array as an array of integers.
     * */
-    protected static void printPackets(){
+    public static void printPackets(){
         for(Packet packet: packetList){
             System.out.println("Sequence Number: " + packet.getSequenceNumber());
             System.out.println("Payload: " + packet.getPayload());
@@ -52,7 +52,7 @@ public class Serializer {
     * specifications for the .packet file format. For more information, see the Packet-File-Format.md doc in the resources
     * folder.
     * */
-    protected static void serializePackets() throws IllegalPropertyException{
+    public static void serializePackets() throws IllegalPropertyException{
         try {
             for (int i = 0; i < packetList.size(); ++i) {
                 Packet packet = packetList.get(i);
