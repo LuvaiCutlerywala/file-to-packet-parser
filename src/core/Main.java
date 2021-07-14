@@ -17,15 +17,14 @@ public class Main {
     * This is the base algorithm, and to note this is the conversion pipeline. So, if you do have anything to improve,
     * please do open a PR and definitely let me know. The application is supposed to be a CLI tool, and the arguments for
     * using it is are as follows:
-    *  - args[0] : The path to the target file to be parsed.
-    *  - args[1] : The packet size.
+    *  - args[0] : The path to the target file to be parsed. (Make sure file path has no spaces).
+    *  - args[1] : The packet size. (As an integer).
     * Support for multi-file parsing might be added in the future.
     * */
     public static void main(String[] args){
         setupSystemProperties();
         FileParser parser = new FileParser(args[0], Integer.parseInt(args[1]));
         parser.parseFile();
-        Serializer.printPackets();
         try{
             Serializer.serializePackets();
         } catch(IllegalPropertyException ip){
@@ -33,6 +32,7 @@ public class Main {
             System.out.println("Exiting serialization process.");
             System.exit(1);
         }
+        Serializer.printPackets();
     }
 
     /*

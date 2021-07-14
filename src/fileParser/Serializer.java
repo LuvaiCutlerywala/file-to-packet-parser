@@ -65,6 +65,7 @@ public class Serializer {
             }
         } catch(IOException io){
             System.err.println(io.getMessage());
+            io.printStackTrace();
         }
         System.out.println("Packets serialized");
     }
