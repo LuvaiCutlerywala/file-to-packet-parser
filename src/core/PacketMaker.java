@@ -11,7 +11,7 @@ import java.io.IOException;
 * for setup and shutdown of the process, and of course the main conversion pipeline. Nothing more should be added to this
 * class for code splitting's sake.
 * */
-public class Main {
+public class PacketMaker {
 
     /*
     * This is the base algorithm, and to note this is the conversion pipeline. So, if you do have anything to improve,
