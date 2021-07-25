@@ -14,6 +14,7 @@ public class Packet {
     private byte[] payload;
     private long unixTimeStamp;
     private String checkSum;
+    private long payloadSize;
 
     public Packet(long sequenceNumber, byte[] payload){
         this.sequenceNumber = sequenceNumber;
@@ -44,6 +45,14 @@ public class Packet {
 
     public String getCheckSum() {
         return this.checkSum;
+    }
+
+    public long getPayloadSize(){
+        return payloadSize;
+    }
+
+    public void setPayloadSize(long payloadSize){
+        this.payloadSize = payloadSize;
     }
 
     /*
