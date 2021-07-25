@@ -24,8 +24,8 @@ public class Serializer {
     private static final ArrayList<Packet> serializationQueue = new ArrayList<>();
 
     //Creates a packet with the given attributes and adds it to the collection.
-    public static void createPacket(int sequenceNumber, byte[] buffer){
-        Packet packet = new Packet(sequenceNumber, buffer);
+    public static void createPacket(int sequenceNumber, byte[] buffer, long payloadSize){
+        Packet packet = new Packet(sequenceNumber, buffer, payloadSize);
         serializationQueue.add(packet);
     }
 
@@ -58,6 +58,7 @@ public class Serializer {
                 Packet packet = serializationQueue.get(i);
                 File file = new File(System.getProperty("PACKET_REPO_PATH") + "\\packet" + i + ".packet");
                 FileOutputStream outStream = new FileOutputStream(file);
+                outStream.write((";" + packet.getPayloadSize() + "; \n").getBytes());
                 outStream.write((";" + packet.getSequenceNumber() + "; \n").getBytes());
                 outStream.write((";" + packet.getUnixTimeStamp() + "; \n").getBytes());
                 outStream.write(validateCheckSum(packet.getCheckSum()));

@@ -61,7 +61,7 @@ public class FileParser {
            int sequenceNumber = 0;
            do{
                dataRead = inpStream.read(buffer);
-               Serializer.createPacket(sequenceNumber, buffer);
+               Serializer.createPacket(sequenceNumber, buffer, payloadSize);
                Arrays.fill(buffer, (byte) 0);
                sequenceNumber++;
            } while(dataRead != -1);

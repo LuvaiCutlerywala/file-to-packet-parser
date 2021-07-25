@@ -16,11 +16,12 @@ public class Packet {
     private String checkSum;
     private long payloadSize;
 
-    public Packet(long sequenceNumber, byte[] payload){
+    public Packet(long sequenceNumber, byte[] payload, long payloadSize){
         this.sequenceNumber = sequenceNumber;
         this.payload = payload;
         this.unixTimeStamp = System.currentTimeMillis() / 1000L;
         this.checkSum = generateCheckSum();
+        this.payloadSize = payloadSize;
     }
 
     public long getSequenceNumber() {
