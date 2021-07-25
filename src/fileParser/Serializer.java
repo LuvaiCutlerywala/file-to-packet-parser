@@ -21,12 +21,12 @@ public class Serializer {
     * Packets are serialized after they are parsed, this is to prevent the carrying of errors from parsing into the
     * serialization process for debugging processes.
     * */
-    private static final ArrayList<Packet> packetList = new ArrayList<>();
+    private static final ArrayList<Packet> serializationQueue = new ArrayList<>();
 
     //Creates a packet with the given attributes and adds it to the collection.
     public static void createPacket(int sequenceNumber, byte[] buffer){
         Packet packet = new Packet(sequenceNumber, buffer);
-        packetList.add(packet);
+        serializationQueue.add(packet);
     }
 
     /*
@@ -38,7 +38,7 @@ public class Serializer {
     * array as an array of integers.
     * */
     public static void printPackets(){
-        for(Packet packet: packetList){
+        for(Packet packet: serializationQueue){
             System.out.println("Sequence Number: " + packet.getSequenceNumber());
             System.out.println("Payload: " + packet.getPayload());
         }
@@ -54,12 +54,12 @@ public class Serializer {
     * */
     public static void serializePackets() throws IllegalPropertyException{
         try {
-            for (int i = 0; i < packetList.size(); ++i) {
-                Packet packet = packetList.get(i);
+            for (int i = 0; i < serializationQueue.size(); ++i) {
+                Packet packet = serializationQueue.get(i);
                 File file = new File(System.getProperty("PACKET_REPO_PATH") + "\\packet" + i + ".packet");
                 FileOutputStream outStream = new FileOutputStream(file);
-                outStream.write((';' + packet.getSequenceNumber() + "; \n").getBytes());
-                outStream.write((';' + packet.getUnixTimeStamp() + "; \n").getBytes());
+                outStream.write((";" + packet.getSequenceNumber() + "; \n").getBytes());
+                outStream.write((";" + packet.getUnixTimeStamp() + "; \n").getBytes());
                 outStream.write(validateCheckSum(packet.getCheckSum()));
                 outStream.write(packet.getPayload());
             }
@@ -82,7 +82,7 @@ public class Serializer {
         if(checkSum.isEmpty()){
             throw new IllegalPropertyException("CheckSum missing from packet.");
         } else {
-            byteArr = (';' + checkSum + "; \n").getBytes();
+            byteArr = (";" + checkSum + "; \n").getBytes();
         }
         return byteArr;
     }
