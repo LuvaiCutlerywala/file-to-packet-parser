@@ -3,11 +3,13 @@ package fileReconstructor;
 import entities.Packet;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Collector {
 
-    private static final ArrayList<Packet> collectionQueue = new ArrayList<>();
+    private static final HashMap<Long, Packet> collectionQueue = new HashMap<>();
 
     public static void collectFiles() throws NullPointerException{
         File packetRepo = new File(System.getProperty("PACKET_REPO_PATH"));
@@ -25,7 +27,18 @@ public class Collector {
     }
 
     public static void collectPacket(Packet packet){
-        collectionQueue.add(packet);
+        collectionQueue.put(packet.getSequenceNumber(), packet);
+    }
+
+    public static Packet[] getOrderedPackets(){
+        Set<Long> keys = collectionQueue.keySet();
+        Long[] packetSequence = keys.toArray(new Long[0]);
+        Arrays.sort(packetSequence);
+        Packet[] packets = new Packet[keys.size()];
+        for(int i = 0; i < packets.length; ++i){
+            packets[i] = collectionQueue.get(packetSequence[i]);
+        }
+        return packets;
     }
 
 }

@@ -30,5 +30,4 @@ public class Deserializer {
         Packet packet = new Packet(payloadSize, sequenceNumber, unixTimeStamp, checkSum, payload);
         Collector.collectPacket(packet);
     }
-
 }
