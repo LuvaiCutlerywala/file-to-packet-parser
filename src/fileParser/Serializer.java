@@ -24,7 +24,7 @@ public class Serializer {
     private static final ArrayList<Packet> serializationQueue = new ArrayList<>();
 
     //Creates a packet with the given attributes and adds it to the collection.
-    public static void createPacket(int sequenceNumber, byte[] buffer, long payloadSize){
+    public static void createPacket(int sequenceNumber, byte[] buffer, int payloadSize){
         Packet packet = new Packet(sequenceNumber, buffer, payloadSize);
         serializationQueue.add(packet);
     }

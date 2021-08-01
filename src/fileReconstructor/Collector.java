@@ -20,8 +20,12 @@ public class Collector {
             throw new NullPointerException("No packets present in packet directory.");
         }
         for(File packetFile: packetFiles){
-            //TODO: Write a method in Deserializer class to deserialize the packet from file and add it to the queue in the Collector class.
+            Deserializer.deserializePackets(packetFile);
         }
+    }
+
+    public static void collectPacket(Packet packet){
+        collectionQueue.add(packet);
     }
 
 }

@@ -14,9 +14,19 @@ public class Packet {
     private byte[] payload;
     private long unixTimeStamp;
     private String checkSum;
-    private long payloadSize;
+    private int payloadSize;
 
-    public Packet(long sequenceNumber, byte[] payload, long payloadSize){
+    public Packet(){}
+
+    public Packet(int payloadSize, long sequenceNumber, long unixTimeStamp, String checkSum, byte[] payload) {
+        this.payloadSize = payloadSize;
+        this.sequenceNumber = sequenceNumber;
+        this.unixTimeStamp = unixTimeStamp;
+        this.checkSum = checkSum;
+        this.payload = payload;
+    }
+
+    public Packet(long sequenceNumber, byte[] payload, int payloadSize){
         this.sequenceNumber = sequenceNumber;
         this.payload = payload;
         this.unixTimeStamp = System.currentTimeMillis() / 1000L;
@@ -44,16 +54,24 @@ public class Packet {
         return unixTimeStamp;
     }
 
+    public void setUnixTimeStamp(long unixTimeStamp){
+        this.unixTimeStamp = unixTimeStamp;
+    }
+
     public String getCheckSum() {
         return this.checkSum;
     }
 
-    public long getPayloadSize(){
+    public int getPayloadSize(){
         return payloadSize;
     }
 
-    public void setPayloadSize(long payloadSize){
+    public void setPayloadSize(int payloadSize){
         this.payloadSize = payloadSize;
+    }
+
+    public void setCheckSum(String checkSum){
+        this.checkSum = checkSum;
     }
 
     /*

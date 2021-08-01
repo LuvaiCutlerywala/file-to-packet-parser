@@ -55,16 +55,15 @@ public class FileParser {
     * */
     public void parseFile(){
         byte[] buffer = new byte[this.payloadSize];
-       try{
-           FileInputStream inpStream = new FileInputStream(file.toString());
-           int dataRead;
+       try(FileInputStream inpStream = new FileInputStream(file.toString())){
+           int dataRead = inpStream.read(buffer);
            int sequenceNumber = 0;
-           do{
+           while(dataRead != -1) {
                dataRead = inpStream.read(buffer);
                Serializer.createPacket(sequenceNumber, buffer, payloadSize);
                Arrays.fill(buffer, (byte) 0);
                sequenceNumber++;
-           } while(dataRead != -1);
+           }
        } catch(IOException io){
            System.err.println(io.getMessage());
        }
