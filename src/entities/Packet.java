@@ -79,7 +79,7 @@ public class Packet {
     * it more convenient to have the same checksum for all packets produced at certain time. The convenience shows in the
     * validation process.
     * */
-    private String generateCheckSum(){
+    public String generateCheckSum(){
         try{
             MessageDigest md = MessageDigest.getInstance("SHA256");
             byte[] digestedHash = md.digest(String.valueOf(unixTimeStamp).getBytes());
