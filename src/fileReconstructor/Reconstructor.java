@@ -11,19 +11,15 @@ public class Reconstructor {
     private File file;
 
     public Reconstructor(File file){
-        this.file = file;
+        this.file = new File(System.getProperty("RECONSTRUCTED_FILE_PATH") + file.toString());
     }
 
     public Reconstructor(String filename){
-        this.file = new File(filename);
-    }
-
-    public Reconstructor(){
-        this.file = new File(System.getProperty("RECONSTRUCTED_FILE_PATH"));
+        this.file = new File(System.getProperty("RECONSTRUCTED_FILE_PATH") + filename);
     }
 
     public void setFilename(File file){
-        this.file = file;
+        this.file = new File(System.getProperty("RECONSTRUCTED_FILE_PATH") + file.toString());
     }
 
     public File getFilename(){
