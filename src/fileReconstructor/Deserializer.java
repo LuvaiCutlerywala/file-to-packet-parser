@@ -27,7 +27,6 @@ public class Deserializer {
     }
 
     public static void createPacket(int payloadSize, long sequenceNumber, long unixTimeStamp, String checkSum, byte[] payload){
-        Packet packet = new Packet(payloadSize, sequenceNumber, unixTimeStamp, checkSum, payload);
-        Collector.collectPacket(packet);
+        Collector.collectPacket(new Packet(payloadSize, sequenceNumber, unixTimeStamp, checkSum, payload));
     }
 }

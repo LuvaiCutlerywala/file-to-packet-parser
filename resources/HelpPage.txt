@@ -1,0 +1,13 @@
+_     _ _______         _____
+|_____| |______ |      |_____]
+|     | |______ |_____ |      
+=============================
+
+Flags:
+   -s : To invoke the file to packet converter.
+   -r : To invoke the packet to file converter.
+   -S : See '-s'.
+   -R : See '-r'.
+
+Syntax:
+  fpp <flag> : For list of flags and their usage, see above.

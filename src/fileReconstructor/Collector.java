@@ -13,10 +13,6 @@ public class Collector {
 
     public static void collectFiles() throws NullPointerException{
         File packetRepo = new File(System.getProperty("PACKET_REPO_PATH"));
-        if(!packetRepo.isDirectory()){
-            System.err.println("Packet Repository Path is not a directory, check environment variable value.");
-            System.exit(1);
-        }
         File[] packetFiles = packetRepo.listFiles();
         if(packetFiles == null){
             throw new NullPointerException("No packets present in packet directory.");

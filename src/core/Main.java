@@ -1,9 +1,11 @@
 package core;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.*;
 
 public class Main {
-
     /*
     * The main CLI endpoint which will be the user interface for the tool. Any methods that are ubiquitous across both the
     * functionalities will be added to this class, whereas any methods that are local to only one functionality should only
@@ -19,7 +21,11 @@ public class Main {
     public static void main(String[] args){
         printPage("Introduction.txt");
         setupSystemProperties();
-        validateOptions(args);
+        try{
+            validateOptions(args);
+        } catch(IllegalArgumentException ia){
+            System.out.println("The switch used does not exist.");
+        }
     }
 
     /*
@@ -40,22 +46,33 @@ public class Main {
         }
         System.setProperty("PACKET_REPO_PATH", PACKET_REPO_PATH);
         System.setProperty("RECONSTRUCTED_FILE_PATH", RECONSTRUCTED_FILE_PATH);
-        System.out.println("DEBUG: System set up.");
     }
 
     private static void validateOptions(String[] args) throws IllegalArgumentException{
         if(args.length == 0){
             printPage("HelpPage.txt");
         } else if(args[0].equals("-r") || args[0].equals("-R")){
-            FileReconstructor.main(args);
+            //FileReconstructor.main(args);
+            System.out.println("DEBUG: Reconstructor called.");
         } else if(args[0].equals("-s") || args[0].equals("-S")) {
             PacketMaker.main(args);
+            System.out.println("DEBUG: Serializer called.");
         } else {
             throw new IllegalArgumentException("Invalid Switch.");
         }
     }
 
     private static void printPage(String pageName){
-
+        pageName = "resources\\" + pageName;
+        String path = Paths.get(pageName).toAbsolutePath().toString();
+        try(BufferedReader reader = new BufferedReader(new FileReader(path))){
+            String content = reader.readLine();
+            while(content != null){
+                System.out.println(content);
+                content = reader.readLine();
+            }
+        } catch (IOException io){
+            System.err.println(io.getMessage());
+        }
     }
 }
